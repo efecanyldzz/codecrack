@@ -1,0 +1,23 @@
+HTTrack3.49-2+htsswf+htsjava launched on Wed, 31 Mar 2021 14:28:53 at https://deeply-neon-blackcurrant.glitch.me/index.html?v= +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" https://deeply-neon-blackcurrant.glitch.me/index.html?v= -O1 "C:\Benim Web Sitem\test" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+14:29:06	Warning: 	Retry after error -5 (Unable to get server's address: Bilinen böyle bir ana bilgisayar yok. ) at link https://i.imgur.com/xFUIeoX.gif (from https://deeply-neon-blackcurrant.glitch.me/davi.css?ec6d7c0e25a6762cdc98)
+14:29:06	Warning: 	Retry after error -5 (Unable to get server's address: Bilinen böyle bir ana bilgisayar yok. ) at link https://saigo.hslo.io/resources/kkPQPdzeBt.png?0c502eb2a7a499f460383ab08c3096c6 (from https://deeply-neon-blackcurrant.glitch.me/davi.css?ec6d7c0e25a6762cdc98)
+14:29:06	Warning: 	Retry after error -5 (Unable to get server's address: unknown error) at link https://saigo.hslo.io/resources/eAhmsuAKEm.png?cac8d86d3b4c2731cafced509d4b26c4 (from https://deeply-neon-blackcurrant.glitch.me/davi.css?ec6d7c0e25a6762cdc98)
+14:29:06	Warning: 	Retry after error -5 (Unable to get server's address: unknown error) at link https://i.imgur.com/ISgELNX.png (from https://deeply-neon-blackcurrant.glitch.me/davi.css?ec6d7c0e25a6762cdc98)
+14:29:07	Warning: 	Retry after error -5 (Unable to get server's address: unknown error) at link https://i.imgur.com/xFUIeoX.gif (from https://deeply-neon-blackcurrant.glitch.me/davi.css?ec6d7c0e25a6762cdc98)
+14:29:07	Warning: 	Retry after error -5 (Unable to get server's address: unknown error) at link https://saigo.hslo.io/resources/kkPQPdzeBt.png?0c502eb2a7a499f460383ab08c3096c6 (from https://deeply-neon-blackcurrant.glitch.me/davi.css?ec6d7c0e25a6762cdc98)
+14:29:07	Warning: 	Retry after error -5 (Unable to get server's address: unknown error) at link https://saigo.hslo.io/resources/eAhmsuAKEm.png?cac8d86d3b4c2731cafced509d4b26c4 (from https://deeply-neon-blackcurrant.glitch.me/davi.css?ec6d7c0e25a6762cdc98)
+14:29:07	Warning: 	Retry after error -5 (Unable to get server's address: unknown error) at link https://i.imgur.com/ISgELNX.png (from https://deeply-neon-blackcurrant.glitch.me/davi.css?ec6d7c0e25a6762cdc98)
+14:29:07	Error: 	"Unable to get server's address: unknown error" (-5) after 2 retries at link https://i.imgur.com/xFUIeoX.gif (from https://deeply-neon-blackcurrant.glitch.me/davi.css?ec6d7c0e25a6762cdc98)
+14:29:07	Error: 	"Unable to get server's address: unknown error" (-5) after 2 retries at link https://saigo.hslo.io/resources/kkPQPdzeBt.png?0c502eb2a7a499f460383ab08c3096c6 (from https://deeply-neon-blackcurrant.glitch.me/davi.css?ec6d7c0e25a6762cdc98)
+14:29:07	Error: 	"Unable to get server's address: unknown error" (-5) after 2 retries at link https://saigo.hslo.io/resources/eAhmsuAKEm.png?cac8d86d3b4c2731cafced509d4b26c4 (from https://deeply-neon-blackcurrant.glitch.me/davi.css?ec6d7c0e25a6762cdc98)
+14:29:07	Error: 	"Unable to get server's address: unknown error" (-5) after 2 retries at link https://i.imgur.com/ISgELNX.png (from https://deeply-neon-blackcurrant.glitch.me/davi.css?ec6d7c0e25a6762cdc98)
+
+HTTrack Website Copier/3.49-2 mirror complete in 14 seconds : 34 links scanned, 21 files written (4101330 bytes overall) [4025034 bytes received at 287502 bytes/sec], 111258 bytes transferred using HTTP compression in 3 files, ratio 25%, 3.1 requests per connection
+(4 errors, 8 warnings, 0 messages)

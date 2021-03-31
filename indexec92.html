@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from deeply-neon-blackcurrant.glitch.me/index.html?v= by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 Mar 2021 11:28:57 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <title>AERO!</title>
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arbutus+Slab|Noto+Sans:400,600,700|Ubuntu:400,700|Oswald:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="../use.fontawesome.com/releases/v5.8.2/css/brands.css" integrity="sha384-i2PyM6FMpVnxjRPi0KW/xIS7hkeSznkllv+Hx/MtYDaHA5VcF0yL3KVlvzp8bWjQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="../use.fontawesome.com/releases/v5.8.2/css/fontawesome.css" integrity="sha384-sri+NftO+0hcisDKgr287Y/1LVnInHJ1l+XC7+FOabmTTIK0HnE2ID+xxvJ21c5J" crossorigin="anonymous">
+    
+    <base >
+    <link href="davi3032.css?ec6d7c0e25a6762cdc98" rel="stylesheet">
+      
+    <script src="app.js"></script>
+
+    <script src="chat.js"></script>
+    <script src="leaderboard.js"></script>
+    <script src="massBar.js"></script>
+    
+    <script src="buildOptions.js"></script>
+    <script src="musicBox.js"></script>
+    <script src="storageConf.js"></script>
+    
+    <style>
+      .grecaptcha-badge {
+        display: none;
+      }
+    </style>
+  
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;500;600;800;900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../use.fontawesome.com/releases/v5.11.2/css/all.css">
+</head>
+
+<body>
+    <div id="backOverlay" style="display: none;"></div>
+    <div id="rbbLoader" style="display: none;"></div>
+    <canvas id="screen"></canvas>
+    <div id="huds">
+        <div id="notifications">
+            <template id="notification-html">
+                <div class="notification">
+                    <div class="icon"><i class="material-icons">{{icon}}</i></div>
+                    <div class="main">
+                        <div class="title">{{title}}</div>
+                        <div class="content">{{content}}</div>
+                    </div>
+                </div>
+            </template>
+        </div>
+        <div id="leaderboard-title">AERO</div>
+        <div id="leaderboard"></div>
+        <div id="player-count-hud" style="top: 400px; display: flex; opacity: 1;">Players amount:<div id="player-count"></div></div>
+        <div id="teamlist-head">
+            <i class="fas fa-bars"></i>
+            <span hstr="html.huds.teamlist_title">Team Players</span>
+        </div>
+        <div id="teamlist-hud" class="panel">
+            <div class="list">
+                <div class="slot">
+                    <div class="mass"></div>
+                    <div class="name"></div>
+                    
+                    <div class="progress">
+                        <div class="mass-bar"></div>
+                    </div>
+                </div>
+                <div class="slot">
+                    <div class="mass"></div>
+                    <div class="name"></div>
+
+                    <div class="progress">
+                        <div class="mass-bar"></div>
+                    </div>
+                </div>
+
+                <div class="slot">
+                    <div class="mass"></div>
+                    <div class="name"></div>
+
+                    <div class="progress">
+                        <div class="mass-bar"></div>
+                    </div>
+                </div>
+                
+                <div class="slot">
+                    <div class="mass"></div>
+                    <div class="name"></div>
+
+                    <div class="progress">
+                        <div class="mass-bar"></div>
+                    </div>
+                </div>
+                
+                <div class="slot">
+                    <div class="mass"></div>
+                    <div class="name"></div>
+
+                    <div class="progress">
+                        <div class="mass-bar"></div>
+                    </div>
+                </div>
+                
+                <div class="slot">
+                    <div class="mass"></div>
+                    <div class="name"></div>
+                    
+                    <div class="progress">
+                        <div class="mass-bar"></div>
+                    </div>
+                </div>
+                
+            </div>
+            <div id="team-data">
+                <div class="team-data-slot"><i class="material-icons">play_arrow</i> <span id="team-data-playing">0</span></div>
+                <div class="team-data-slot"><i class="material-icons">pause</i> <span id="team-data-idle">0</span></div>
+                <div class="team-data-slot" id="totalTeam"><i class="material-icons">sports_volleyball</i> <span id="team-data-mass">0</span></div>
+            </div>
+        </div>
+        <div id="minimap">
+            <div class="background">
+                <div class="row">
+                    <div class="sector">A1</div>
+                    <div class="sector">A2</div>
+                    <div class="sector">A3</div>
+                    <div class="sector">A4</div>
+                    <div class="sector">A5</div>
+                </div>
+                <div class="row">
+                    <div class="sector">B1</div>
+                    <div class="sector">B2</div>
+                    <div class="sector">B3</div>
+                    <div class="sector">B4</div>
+                    <div class="sector">B5</div>
+                </div>
+                <div class="row">
+                    <div class="sector">C1</div>
+                    <div class="sector">C2</div>
+                    <div class="sector">C3</div>
+                    <div class="sector">C4</div>
+                    <div class="sector">C5</div>
+                </div>
+                <div class="row">
+                    <div class="sector">D1</div>
+                    <div class="sector">D2</div>
+                    <div class="sector">D3</div>
+                    <div class="sector">D4</div>
+                    <div class="sector">D5</div>
+                </div>
+                <div class="row">
+                    <div class="sector">E1</div>
+                    <div class="sector">E2</div>
+                    <div class="sector">E3</div>
+                    <div class="sector">E4</div>
+                    <div class="sector">E5</div>
+                </div>
+            </div>
+            <canvas id="minimap-nodes" width="180" height="180"></canvas>
+        </div>
+        <div id="stats"></div>
+        <div id="chatroom">
+            <template id="chatroom-message-html">
+                <div class="message"><i class="material-icons">info</i>
+                    <div class="time">00:02</div>
+                    <div class="title">2CL</div>
+                    <div class="content">Moshi moshi</div>
+                </div>
+            </template>
+        </div>
+        <div id="time-hud"></div>
+    </div>
+    <div id="menu">
+        <div id="music-box" style="display: none">
+            <div class="music-player">
+                <iframe width="100%" height="60" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&amp;mini=1&amp;feed=%2FJS_Nightcore%2Fnightcore-mix-2%2F" frameborder="0"></iframe>
+            </div>
+            <div class="music-button">
+                <i class="material-icons">keyboard_arrow_right</i>
+            </div>
+            <input class="input-field" placeholder="Insert the iframe code" style="display: none">
+        </div>
+        <div id="menu-new">
+          <div id="extension-title">AERO</div>
+          <div id="main-menu">
+              <div id="skin-preview"></div>
+              <div id="play">
+                  <span class="material-icons">play_arrow</span>
+              </div>
+              <div id="open-settings-menu">
+                  <span class="material-icons">settings</span>
+              </div>
+              <div id="spectate">
+                  <span class="material-icons">remove_red_eye</span>
+              </div>
+              <div id="toggle-multibox">
+                  <span class="material-icons">indeterminate_check_box</span>
+              </div>
+              <input type="text" placeholder="TAG" id="tag">
+              <div id="user-info">
+                  <input type="text" placeholder="NICK 1" id="nick1" class="nickname" maxlength="14">
+                  <input type="text" placeholder="NICK 2" id="nick2" class="nickname" maxlength="14">
+              </div>
+              <div id="user-skin">
+                  <input type="text" placeholder="SKIN 1" id="skin1" class="skin" maxlength="33">
+                  <input type="text" placeholder="SKIN 1" id="skin2" class="skin" maxlength="33">
+              </div>
+          </div>
+          <button id="game-mode">PARTY</button>
+          <button id="game-server">EAST ASIA</button>
+          <button id="open-accounts-menu">LOGIN</button>
+          <input type="text" placeholder="CODE" id="room-id">
+          <button id="create-room">CREATE</button>
+          <button id="join-room">JOIN</button>
+          <div id="build-info">
+              AERO VERSION 1.1 BETA [28 FEB 2021] CODED BY DAVI SH
+          </div>
+      </div>
+        <div class="player-data-box" multibox="off" primary="facebook" style="display: none">
+            <div id="toggle-streammode"><i class="material-icons">visibility</i></div>
+            <div class="room-type-box">
+                <div class="dropdown" id="gamemode" value=":party">
+                    <div class="selected">Party</div>
+                    <div class="arrow"><i class="material-icons">keyboard_arrow_down</i></div>
+                    <div class="list">
+                        <div class="item material-button" value=":party">Party</div>
+                        <div class="item material-button" value=":ffa">FFA</div>
+                        <div class="item material-button" value=":experimental">Experimental</div>
+                    </div>
+                </div>
+                <div class="dropdown" id="region" value="JP-Tokyo">
+                    <div class="selected">East Asia</div>
+                    <div class="arrow"><i class="material-icons">keyboard_arrow_down</i></div>
+                    <div class="list">
+                        <div class="item material-button" value="US-Atlanta">North America</div>
+                        <div class="item material-button" value="BR-Brazil">South America</div>
+                        <div class="item material-button" value="EU-London">Europe</div>
+                        <div class="item material-button" value="RU-Russia">Russia</div>
+                        <div class="item material-button" value="TK-Turkey">Turkey</div>
+                        <div class="item material-button" value="JP-Tokyo">East Asia</div>
+                        <div class="item material-button" value="CN-China">China</div>
+                        <div class="item material-button" value="SG-Singapore">Oceania</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="accounts-menu">
+            <div class="label">Primary account</div>
+            <div class="dropdown" id="primary-account" value="facebook">
+                <div class="selected">Facebook</div>
+                <div class="arrow"><i class="material-icons">keyboard_arrow_down</i></div>
+                <div class="list">
+                    <div class="item material-button" value="facebook">Facebook</div>
+                    <div class="item material-button" value="google-plus">Google+</div>
+                </div>
+            </div>
+            <button class="login-button material-button" id="login-facebook"><span>Login with Facebook</span></button> <button class="login-button material-button" id="login-google-plus"><span>Login with Google+</span></button>
+            <button id="close-accounts-menu" class="material-button">Close</button>
+        </div>
+        <div id="settings-menu">
+            <div id="close-settings-menu"><i class="material-icons">close</i></div>
+            <div class="navigation">
+                <div class="tab material-button active" category="game"><i class="material-icons">games</i> Game</div>
+                <div class="tab material-button" category="theme"><i class="material-icons">palette</i> Theme</div>
+                <div class="tab material-button" category="chat"><i class="material-icons">chat</i> Chat</div>
+                <div class="tab material-button" category="huds"><i class="material-icons">layers</i> Huds</div>
+                <div class="tab material-button" category="controls"><i class="material-icons">keyboard</i> Controls</div>
+                <div class="tab material-button" category="userdata"><i class="material-icons">data_usage</i> User data</div>
+                <div class="tab material-button" category="bots"><i class="material-icons">android</i> Bots</div>
+            </div>
+            <div class="options-list">
+                <div category="game" class="active"></div>
+                <div category="theme"></div>
+                <div category="chat"></div>
+                <div category="huds"></div>
+                <div category="controls"></div>
+                <div category="userdata">
+                    <div class="option">
+                        <button class="ud-button material-button" id="userdata-save"><i class="material-icons">cloud_download</i> Save</button>
+                        <button class="ud-button material-button" id="userdata-load"><i class="material-icons">cloud_upload</i> Load</button>
+                        <button class="ud-button material-button" id="userdata-reset"><i class="material-icons">refresh</i> Reset</button> <input type="file" accept=".hsf" style="display: none;" id="userdata-file-input" />
+                    </div>
+                    <div class="seperator"></div>
+                </div>
+                <div category="bots"></div>
+                <template name="setting-option-seperator"><div class="seperator"></div></template>
+                <template name="setting-option-toggle">
+                    <div class="option toggle">
+                        <div class="name">Setting name</div>
+                        <div class="box"><div class="ball"></div></div>
+                    </div>
+                </template>
+                <template name="setting-option-range">
+                    <div class="option range">
+                        <div class="name">Setting name</div>
+                        <div class="value">4</div>
+                        <div class="box">
+                            <div class="progress-bar"><div class="fill"></div></div>
+                            <input type="range" min="0" max="10" step="1" value="4" />
+                        </div>
+                    </div>
+                </template>
+                <template name="setting-option-drop-down">
+                    <div class="option drop-down">
+                        <div class="name">Setting name</div>
+                        <div class="box">
+                            <div class="selected">Option A</div>
+                            <div class="arrow"><i class="material-icons">keyboard_arrow_down</i></div>
+                            <div class="list"></div>
+                        </div>
+                    </div>
+                </template>
+                <template name="setting-option-drop-down-item"><div class="item material-button" value="a">Option A</div></template>
+                <template name="setting-option-input">
+                    <div class="option input">
+                        <div class="name">Setting name</div>
+                        <input value="Feed me!" />
+                    </div>
+                </template>
+                <template name="setting-option-colorpicker">
+                    <div class="option colorpicker">
+                        <div class="name">Setting name</div>
+                        <input />
+                        <div class="color-preview"></div>
+                    </div>
+                </template>
+                <template name="setting-option-hotkey">
+                    <div class="option hotkey">
+                        <div class="name">Setting name</div>
+                        <input />
+                    </div>
+                </template>
+            </div>
+        </div>
+        <div id="game-mode-catalogue">
+          <div id="close-game-mode-catalogue">
+            <i class="material-icons material-button" style="position: relative; overflow: hidden;">close</i>
+          </div>
+          <div id="container">
+            <button class="btn-button">FFA</button>
+            <button class="btn-button">EXP</button>
+            <button class="btn-button">PARTY</button>
+          </div>
+        </div>
+        <div id="game-server-catalogue">
+          <div id="close-game-server-catalogue">
+            <i class="material-icons material-button" style="position: relative; overflow: hidden;">close</i>
+          </div>
+          <div id="container-game-server">
+            <button class="btn-button">NORTH AMERICA</button>
+            <button class="btn-button">SOUTH AMERICA</button>
+            <button class="btn-button">EUROPE</button>
+            <button class="btn-button">RUSSIA</button>
+            <button class="btn-button">TURKEY</button>
+            <button class="btn-button">EAST ASIA</button>
+            <button class="btn-button">CHINA</button>
+            <button class="btn-button">OCEANIA</button>
+          </div>
+        </div>
+        <div id="profiles-catalogue" multibox="off" primary="facebook">
+            <div id="close-profiles-catalogue"><i class="material-icons material-button">close</i></div>
+            <div class="container">
+                <div class="display material-button" id="profile-select-1">
+                    <div class="skins">
+                        <div class="skin one"></div>
+                        <div class="skin two"></div>
+                    </div>
+                    <div class="nicks">
+                        <div class="nick one">Profile 1</div>
+                        <div class="nick two">Profile 1</div>
+                    </div>
+                </div>
+                <div class="display material-button" id="profile-select-2">
+                    <div class="skins">
+                        <div class="skin one"></div>
+                        <div class="skin two"></div>
+                    </div>
+                    <div class="nicks">
+                        <div class="nick one">Profile 2</div>
+                        <div class="nick two">Profile 2</div>
+                    </div>
+                </div>
+                <div class="display material-button" id="profile-select-3">
+                    <div class="skins">
+                        <div class="skin one"></div>
+                        <div class="skin two"></div>
+                    </div>
+                    <div class="nicks">
+                        <div class="nick one">Profile 3</div>
+                        <div class="nick two">Profile 3</div>
+                    </div>
+                </div>
+                <div class="display material-button" id="profile-select-4">
+                    <div class="skins">
+                        <div class="skin one"></div>
+                        <div class="skin two"></div>
+                    </div>
+                    <div class="nicks">
+                        <div class="nick one">Profile 4</div>
+                        <div class="nick two">Profile 4</div>
+                    </div>
+                </div>
+                <div class="display material-button" id="profile-select-5">
+                    <div class="skins">
+                        <div class="skin one"></div>
+                        <div class="skin two"></div>
+                    </div>
+                    <div class="nicks">
+                        <div class="nick one">Profile 5</div>
+                        <div class="nick two">Profile 5</div>
+                    </div>
+                </div>
+                <div class="display material-button" id="profile-select-6">
+                    <div class="skins">
+                        <div class="skin one"></div>
+                        <div class="skin two"></div>
+                    </div>
+                    <div class="nicks">
+                        <div class="nick one">Profile 6</div>
+                        <div class="nick two">Profile 6</div>
+                    </div>
+                </div>
+                <div class="display material-button" id="profile-select-7">
+                    <div class="skins">
+                        <div class="skin one"></div>
+                        <div class="skin two"></div>
+                    </div>
+                    <div class="nicks">
+                        <div class="nick one">Profile 7</div>
+                        <div class="nick two">Profile 7</div>
+                    </div>
+                </div>
+                <div class="display material-button" id="profile-select-8">
+                    <div class="skins">
+                        <div class="skin one"></div>
+                        <div class="skin two"></div>
+                    </div>
+                    <div class="nicks">
+                        <div class="nick one">Profile 8</div>
+                        <div class="nick two">Profile 8</div>
+                    </div>
+                </div>
+                <div class="display material-button" id="profile-select-9">
+                    <div class="skins">
+                        <div class="skin one"></div>
+                        <div class="skin two"></div>
+                    </div>
+                    <div class="nicks">
+                        <div class="nick one">Profile 9</div>
+                        <div class="nick two">Profile 9</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="changelog">
+            <div class="title">Changelog</div>
+            <div id="changelog-close"><i class="material-icons">close</i></div>
+            <template id="changelog-entry">
+                <div class="entry">
+                    <div class="date"></div>
+                </div>
+            </template>
+            <template id="changelog-list-item">
+                <div class="list-item"><i class="material-icons"></i> <span></span></div>
+            </template>
+        </div>
+        <div class="top-bar" multibox="off">
+            <button class="reconnect disconnected material-button" owner="0"><i class="material-icons">sync</i> 1</button>
+            <button class="reconnect disconnected material-button" owner="1"><i class="material-icons">sync</i> 2</button>
+            <div id="socket-ip"><i class="material-icons">wifi</i> Not connected</div>
+        </div>
+        <div class="info-bar" style="display: none"><span id="d-mode-on"><strong>AERO 特別</strong> by <strong>DSH 紳士 & 2CL투샤르</strong></span>
+            <div class="divider"></div>
+            <div id="changelog-open">Changelog<i class="material-icons">new_releases</i></div>
+            <div class="divider"></div><a href="https://aero.io/themes" target="_blank">Themes</a>
+            <div class="divider"></div><a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019" target="_blank">COVID-19</a></div>
+        </div>
+    </div>
+    <div id="loading-screen">
+        <div class="bg"></div>
+        <canvas id="ls-orbs"></canvas>
+        <div class="title">
+            <div class="main">AERO</div>
+            <div class="sub">ㅡ スペシャルエディション ㅡ</div>
+        </div>
+        <div class="progress-bar">
+            <div class="fill"></div>
+        </div>
+    </div>
+    <div id="chatbox">
+            <div id="emotes-box">
+                <img src="https://the-sh.github.io/aero/assets/66f6c781fe86c346fbaf3390618668fc.svg" class="emojiPreview" id="😃">
+                <img src="https://the-sh.github.io/aero/assets/626aaed496ac12bbdb68a86b46871a1f.svg" class="emojiPreview" id="😄">
+                <img src="https://the-sh.github.io/aero/assets/ab226fe832acc948e9f974decd04a4f0.svg" class="emojiPreview" id="😁">
+                <img src="https://the-sh.github.io/aero/assets/babfa5ab2aa87f7001ac9c1f9a7d5f34.svg" class="emojiPreview" id="😆">
+                <img src="https://the-sh.github.io/aero/assets/b45af785b0e648fe2fb7e318a6b8010c.svg" class="emojiPreview" id="😅">
+                <img src="https://the-sh.github.io/aero/assets/6201503f3aa918470a2190b36d1e196f.svg" class="emojiPreview" id="😂">
+                <img src="https://the-sh.github.io/aero/assets/4c537a5536df74dcb65c6feb2ad3ab44.svg" class="emojiPreview" id="🤣">
+                <img src="https://the-sh.github.io/aero/assets/b426f77f42bb709bcb2faa23602d2dc4.svg" class="emojiPreview" id="☺">
+                <img src="https://the-sh.github.io/aero/assets/6f75b58eb746d08c2c18451573876292.svg" class="emojiPreview" id="😊">
+                <img src="https://the-sh.github.io/aero/assets/e461bb3847973d47822fdc79d66f494d.svg" class="emojiPreview" id="😇">
+                <img src="https://the-sh.github.io/aero/assets/da3651e59d6006dfa5fa07ec3102d1f3.svg" class="emojiPreview" id="🙂">
+                <img src="https://the-sh.github.io/aero/assets/559c3311dcdb3f23b7fb745559207db9.svg" class="emojiPreview" id="🙃">
+                <img src="https://the-sh.github.io/aero/assets/2e41bfdeba797283ee9da9bb439c3ece.svg" class="emojiPreview" id="😉">
+                <img src="https://the-sh.github.io/aero/assets/817f965bd1fd796777908e6c8052d665.svg" class="emojiPreview" id="😌">
+                <img src="https://the-sh.github.io/aero/assets/e55f552bd0b1cf368b466422408c8401.svg" class="emojiPreview" id="😍">
+                <img src="https://the-sh.github.io/aero/assets/01c80723fb8cbdcb9e22747cd88e07e4.svg" class="emojiPreview" id="🥰">
+                <img src="https://the-sh.github.io/aero/assets/81a553e7c02c5dd144e40888c4b2faad.svg" class="emojiPreview" id="😘">
+                <img src="https://the-sh.github.io/aero/assets/2651df01b16f9037f954d7bfe6a535f4.svg" class="emojiPreview" id="😗">
+                <img src="https://the-sh.github.io/aero/assets/d5d060921efbed7794c0d8087ba4cf58.svg" class="emojiPreview" id="😙">
+                <img src="https://the-sh.github.io/aero/assets/ac30cfcc3533da0c03cc80bbc3e63db6.svg" class="emojiPreview" id="😚">
+                <img src="https://the-sh.github.io/aero/assets/be42b4728571aefc3cb4dff73e10dbcd.svg" class="emojiPreview" id="😋">
+                <img src="https://the-sh.github.io/aero/assets/9b6c5562bae7b218d94dd9bd91daafd2.svg" class="emojiPreview" id="😛">
+                <img src="https://the-sh.github.io/aero/assets/ece6283544a703f158b497507aae3b62.svg" class="emojiPreview" id="🧐">
+                <img src="https://the-sh.github.io/aero/assets/c61131c53f9986ac8808d592c3019a7a.svg" class="emojiPreview" id="🤓">
+                <img src="https://the-sh.github.io/aero/assets/5f80f04e6ee97feebdd00feff92ced82.svg" class="emojiPreview" id="😎">
+                <img src="https://the-sh.github.io/aero/assets/ffa92fc2c8f0a781d5ae9ffbecefa054.svg" class="emojiPreview" id="🤩">
+                <img src="https://the-sh.github.io/aero/assets/f3e307960b1c81de130c429034802618.svg" class="emojiPreview" id="🥳">
+                <img src="https://the-sh.github.io/aero/assets/480eb6b0f6c22cbc1d98d6ff93e1edc1.svg" class="emojiPreview" id="😏">
+                <img src="https://the-sh.github.io/aero/assets/19581aca5d78feac3a180971f24d399b.svg" class="emojiPreview" id="😒">
+                <img src="https://the-sh.github.io/aero/assets/08b9e24092ee146b9e071e89049c1055.svg" class="emojiPreview" id="😞">
+                <img src="https://the-sh.github.io/aero/assets/2ea1f6bba4448fa4e8d9504fe976095d.svg" class="emojiPreview" id="😔">
+                <img src="https://the-sh.github.io/aero/assets/6bca769662f755d33514d1f5304c617d.svg" class="emojiPreview" id="🥺">
+                <img src="https://the-sh.github.io/aero/assets/f6d30507f4baee759bc9d7e5c0d3ba4f.svg" class="emojiPreview" id="😢">
+                <img src="https://the-sh.github.io/aero/assets/f7b3f6b926cb31a17d4928d076febab4.svg" class="emojiPreview" id="😭">
+                <img src="https://the-sh.github.io/aero/assets/1344a726dc134bff094a84ff60ea934d.svg" class="emojiPreview" id="😤">
+                <img src="https://the-sh.github.io/aero/assets/4a1e59abafc2145af813eda8bf82a49d.svg" class="emojiPreview" id="😠">
+                <img src="https://the-sh.github.io/aero/assets/3f4e3f10b0a177426ca14b381445ca3b.svg" class="emojiPreview" id="😡">
+                <img src="https://the-sh.github.io/aero/assets/d3b48623c6a5915294f7278351b002da.svg" class="emojiPreview" id="🤬">
+                <img src="https://the-sh.github.io/aero/assets/9be66884222f362fd161718c45fd9663.svg" class="emojiPreview" id="😳">
+                <img src="https://the-sh.github.io/aero/assets/372518b135d414f92edcd06b89e1468b.svg" class="emojiPreview" id="🥵">
+                <img src="https://the-sh.github.io/aero/assets/10ba107674fdf2d100be5592e7c85c74.svg" class="emojiPreview" id="🥶">
+                <img src="https://the-sh.github.io/aero/assets/aeb86343db64360cf19cd66eae4eb792.svg" class="emojiPreview" id="🤗">
+                <img src="https://the-sh.github.io/aero/assets/263a7f4eeb6f69e46d969fa479188592.svg" class="emojiPreview" id="🤔">
+                <img src="https://the-sh.github.io/aero/assets/6ba3855f5ea79b9b014e66b28c54429c.svg" class="emojiPreview" id="🤭">
+                <img src="https://the-sh.github.io/aero/assets/acb7b1a237378bbddd34927b4001b8f4.svg" class="emojiPreview" id="🤫">
+                <img src="https://the-sh.github.io/aero/assets/0d8bbcf262e835b89d4f75a0cda241fe.svg" class="emojiPreview" id="🤒">
+                <img src="https://the-sh.github.io/aero/assets/54b9902837fed72b7551edb77b30b96e.svg" class="emojiPreview" id="😈">
+                <img src="https://the-sh.github.io/aero/assets/7fd35efd211326f76a364c4c10d77ef1.svg" class="emojiPreview" id="👿">
+                <img src="https://the-sh.github.io/aero/assets/8359db312f7319a4b0b23415e5fd1392.svg" class="emojiPreview" id="💩">
+                <img src="https://the-sh.github.io/aero/assets/d92e0fd8dd2558af60d2a77eaae3100f.svg" class="emojiPreview" id="👻">
+                <img src="https://the-sh.github.io/aero/assets/f64f47a895e537305b3463f9d30bc177.svg" class="emojiPreview" id="💀">
+                <img src="https://the-sh.github.io/aero/assets/39cb7a326a67437dfed8216b0523d055.svg" class="emojiPreview" id="☠">
+                <img src="https://the-sh.github.io/aero/assets/9cf1e02c84cdd759ebbd16d28e431d42.svg" class="emojiPreview" id="👽">
+                <img src="https://the-sh.github.io/aero/assets/f061fbca366aace47d711c09ee19d26b.svg" class="emojiPreview" id="👾">
+                <img src="https://the-sh.github.io/aero/assets/b67e65c2ab0428da786c1f53ebfd4243.svg" class="emojiPreview" id="🤖">
+                <img src="https://the-sh.github.io/aero/assets/549e0b9954236583f841032b85ba45f9.svg" class="emojiPreview" id="🎃">
+                <img src="https://the-sh.github.io/aero/assets/ef2af7fab48463e72a3a7f0f8fb4fb4e.svg" class="emojiPreview" id="😺">
+                <img src="https://the-sh.github.io/aero/assets/e96ed3e46f59af0b9b7b49e3cb4e59f7.svg" class="emojiPreview" id="😸">
+                <img src="https://the-sh.github.io/aero/assets/4557741be111e94ca7083abf39422a30.svg" class="emojiPreview" id="😹">
+            </div>
+            <div class="input-container">
+                <input id="chat-input" placeholder="Enter chat message..." /> <button id="emotes-box-toggle"><i class="material-icons">mood</i></button>
+            </div>
+        </div>
+    <div id="recaptcha-screen">
+        <div class="recaptcha" id="recaptcha-a"></div>
+        <div class="recaptcha" id="recaptcha-b"></div>
+    </div>
+    <script src="vendors5ecb.js?01ae98f328bbf544517d"></script>
+    <script src="core5ecb.js?01ae98f328bbf544517d"></script>
+</body>
+
+
+<!-- Mirrored from deeply-neon-blackcurrant.glitch.me/index.html?v= by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 Mar 2021 11:29:02 GMT -->
+</html>
+
+</html>
